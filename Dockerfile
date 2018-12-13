@@ -21,20 +21,4 @@ RUN echo "${TZ}" > /etc/timezone && \
 RUN npm install yarn -g && \
     chmod 755 /usr/local/bin/yarn
 
-# Windows のローカルインストール用に --no-bin-links しているので、node_modules 配下に個別にパスを通す。
-# 今いる場所の相対パスで解決する。
-#
-# # stencil コマンド
-# export PATH=$PATH:./node_modules/\@stencil/core/bin
-# # sd コマンド
-# export PATH=$PATH:./node_modules/\@stencil/utils/bin
-# # stencil-dev-server コマンド
-# export PATH=$PATH:./node_modules/\@stencil/dev-server/bin
-# # jest コマンド (これは jest.js なので解決できない。test 用なので利用不可のままにしておく)
-# # export PATH=$PATH:./node_modules/\@stencil/jest/bin
-ENV PATH=$PATH:./node_modules/\@stencil/core/bin:./node_modules/\@stencil/utils/bin:./node_modules/\@stencil/dev-server/bin
-
-# Dockerコンテナの指定したポートを開き他から参照できるようにします。
-#  3333: Ionic の stencil-dev-server の httpPort (デフォルト)
-# 35729: Ionic の stencil-dev-server の liveReloadPort (デフォルト)
 EXPOSE 3333 35729
